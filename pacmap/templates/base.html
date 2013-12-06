@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+      {% block external %}
+      {% endblock %}
+
+    <title>PAC Money Maps</title>
+    <link rel="stylesheet" href="/stylesheets/base.css">
+    <link rel="stylesheet" href="/stylesheets/layout.css">
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel="stylesheet" href="/stylesheets/skeleton.css">
+    
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <!--<link rel="stylesheet" href="/javascripts/style.css">-->
+     <script type="text/javascript" src="/javascripts/jquery.js"></script>
+  </head>
+  <body>
+
+    <div id="header" class="container">
+      <div id="nav" class="eleven columns">
+          <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/search">Search</a></li>
+          </ul>
+      </div>
+      <div class="five columns"><h3>PAC Money Maps</h3></div>
+
+    </div><!-- container>-->
+
+    <div id="body" class="container">
+
+        {% block content %}
+        {% endblock %}
+
+    </div>
+    <footer><p>@ All rights reserved</p>
+    </footer>
+  </body>
+</html>

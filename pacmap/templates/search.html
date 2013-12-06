@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block external %}
+
+<script type="text/javascript" src="/javascripts/jquery-1.9.1.min.js"></script>
+
+<script type="text/javascript" src="/javascripts/search.js"></script>
+<script type="text/javascript" SRC="/javascripts/d3.v3.min.js"></script>
+{% endblock %}
+
+{% block title %}Search{% endblock %}
+{% block head  %}Search{% endblock %}
+
+{% block content %}
+
+    <div  class="four columns">
+        <div id="error">
+        </div>
+        <form id="search-form" method="post" action=".">{% csrf_token %}
+            <p class="label">{{ form.donor.label }}{{ form.donor}}</p>
+            <input class="submit" type = "submit" value = "Get Data"/>
+        </form>
+        <div id="search-results">
+        {% if show_result %}
+                {% include "search_results.html" %}
+        {% endif %}
+        </div>
+
+    </div>
+    
+    <div id="my123" class="sixteen columns">
+        {% include "district_map.html" %}
+    </div>
+
+{% endblock %}
+

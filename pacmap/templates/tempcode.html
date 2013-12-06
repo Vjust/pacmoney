@@ -1,0 +1,57 @@
+/* the below code is <% else %> statement in search_results.html page */
+{% else %}
+        
+    <p class="header">Contributions from: {{my_donor}}</p>
+    <div class="divTable">
+        <div class="divRow">
+            <div class="divColumnHeader">
+                <label id="name" > Name</label>
+            </div>
+            <div class="divColumnHeader">
+                 <label id="amt" > Amt</label>
+            </div>
+            <div class="divColumnHeader">
+                 <label id="district_id" > district</label>
+            </div>
+        </div>
+        {% for list in result_list %}
+        <div class="divRow">
+            <div id="contr_link" class="divColumn">
+                 <a href="#" onclick='searchHighLight( "{{ list.district_id }}", "{{ list.cmte_name }}", "{{ list.transaction_amt }}", "{{list.cand_name}}", "{{ list.cand_pty_affiliation }}");'>{{list.name}}</a>
+               <!--<a href="#" >{{list.name}}</a>-->
+            
+            </div>
+    
+            <div class="divColumn">
+            {% if list.transaction_amt == '' %}
+                  None
+            {% else %}
+                  {{ list.transaction_amt }}
+            {% endif %}
+            </div>
+            <div class="divColumn">
+            {% if list.district_id == '' %}
+                  None
+            {% else %}
+                  {{ list.district_id }}
+            {% endif %}
+            </div>
+    
+       
+        </div>
+        {% endfor %}
+    
+        <div class="divRow">
+             <div class="divColumnPaginator">
+                {% if show_paginator %}
+                {% if has_prev %}
+                    <a href="/search/?ajax&donor={{my_donor}}&page={{ prev_page }}">&laquo; Previous</a>
+                {% endif %}
+                {% if has_next %}
+                    <a href="/search/?ajax&donor={{my_donor}}&page={{ next_page }}">Next &raquo;</a>
+                {% endif %}
+                    (Page {{ page }} of {{ pages }})
+                {% endif %}
+             </div>
+        </div>
+    </div>

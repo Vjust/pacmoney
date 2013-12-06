@@ -1,0 +1,216 @@
+#header {
+ background-color: lightblue;
+ opacity: .9;position: relative; width: 100%; margin: 0 auto; padding: 0;
+}
+div+jumbo {
+padding: 10px 0 30px 0;
+background-color: #eeeeee;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
+}
+p.errmsg {
+font-style:italic;
+color:#ff0000;
+}
+	/*body {*/
+  /*margin-top: 0;*/
+  /*padding: 0;*/
+  /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+  /*color: #444;*/
+ 
+/*}*/
+
+/*/**/
+ /** Create dark grey header with a white logo*/
+   /*background-color: #2B2B2B;*/
+ /**/*/
+
+/*header {*/
+  /*background-color: lightblue;*/
+  /*height: 75px;*/
+  /*width: 100%;*/
+  /*opacity: .9;*/
+/*}*/
+
+/*header h1.logo {*/
+  /*margin: 0;*/
+  /*font-size: 1.7em;*/
+  /*color: #fff;*/
+  /*/* text-transform: uppercase; */*/
+  /*text-align: center;*/
+  /*padding: 10px 0 2px 0;*/
+/*}*/
+
+/*header h1.logo:hover {*/
+  /*color: #000;*/
+  /*text-decoration: none;*/
+/*}*/
+
+/*/**/
+ /** Center the body content*/
+ /**/*/
+
+/*.container_header{*/
+  /*width: 940px;*/
+  /*margin: 0 auto;*/
+/*}*/
+/*.container{*/
+  /*width: 100%;*/
+  /*margin: 0 auto;*/
+/*}*/
+/*.left{*/
+    /*width:10%;*/
+    /*background-color: #eeeeee;*/
+    /*float:left;*/
+    /*height:100%;*/
+    /*margin-top:0;*/
+    /*margin-left:0;*/
+/*}*/
+/*.right{*/
+    /*width:80%;*/
+    /*float:right;*/
+    /*display: block;*/
+    /*height:100%;*/
+    /*margin-top:0;*/
+    /*margin-left:0;*/
+    /*position: absolute;*/
+    /*left: 200px;*/
+    /*top:-100px;*/
+/*}*/
+/*div.jumbo {*/
+  /*padding: 10px 0 30px 0;*/
+  /*background-color: #eeeeee;*/
+  /*-webkit-border-radius: 6px;*/
+     /*-moz-border-radius: 6px;*/
+          /*border-radius: 6px;*/
+/*}*/
+/*h2 {*/
+  /*font-size: 3em;*/
+  /*margin-top: 40px;*/
+  /*text-align: center;*/
+  /*letter-spacing: -2px;*/
+/*}*/
+
+/*h3 {*/
+  /*font-size: 1.5em;*/
+  /*font-weight: 100;*/
+  /*margin-top: 30px;*/
+  /*text-align: center;*/
+  /*letter-spacing: -1px;*/
+  /*color: #999;*/
+/*}*/
+
+
+/*.menu {*/
+  /*float: right;*/
+  /*margin-top: 2px;*/
+/*}*/
+
+/*.menu li {*/
+  /*display: inline;*/
+/*}*/
+
+/*.menu li + li {*/
+  /*margin-left: 35px;*/
+/*}*/
+
+/*.menu li a {*/
+  /*color: #222222;*/
+  /*text-decoration: none;*/
+  /*font-size: 1.2em;*/
+/*}*/
+/*p.label {*/
+ /*font-size: 1.0em;*/
+ /*font-weight: 100;*/
+  /*padding-top: 30px;*/
+  /*text-align: left;*/
+  /*letter-spacing: -1px;*/
+/*}*/
+/*p.errmsg {*/
+  /*font-size: 16px;*/
+  /*color:#ff0000;*/
+/*}*/
+/*p.sname{*/
+ /*font-size: 1.2em;*/
+/*}*/
+/*p.header{*/
+ /*font-size: 1.2em;*/
+/*}*/
+/*.submit {*/
+  /*font-size: 1.2em;*/
+  /*font-weight: 100;*/
+/*}*/
+
+/*/*div -Table css */*/
+/*.divTable*/
+/*{*/
+        /*width: 100%;*/
+        /*display:table;*/
+/*}*/
+/*.divRow*/
+/*{*/
+         /*width: 100%;*/
+         /*display: table-row;*/
+         /*background: #eeeeee;*/
+
+/*}*/
+/*.divColumnHeader*/
+/*{*/
+         /*float: left;*/
+         /*display:table-column;*/
+         /*width:29%;*/
+         /*font-size: 0.8em;*/
+         /*text-align: center;*/
+         /*background: #eeeeee;*/
+         /*padding: .3em;*/
+         /*border-top: #ffffff solid;*/
+         /*border-bottom: #ffffff solid;*/
+         /*letter-spacing: -1px;*/
+/*}*/
+/*.divColumn*/
+/*{*/
+         /*float: left;*/
+         /*display:table-column;*/
+         /*width:29%;*/
+         /*font-size: 0.8em;*/
+         /*text-align: center;*/
+         /*background: #eeeeee;*/
+         /*padding: .3em;*/
+         /*letter-spacing: -1px;*/
+/*}*/
+/*.divColumn.a*/
+/*{*/
+    /*white-space: pre-wrap;*/
+/*}*/
+/*.divColumnPaginator*/
+/*{*/
+         /*float: left;*/
+         /*display:table-column;*/
+         /*width:98%;*/
+         /*font-size: 0.8em;*/
+         /*text-align: center;*/
+         /*background: #eeeeee;*/
+         /*padding: .3em;*/
+         /*border-top: #ffffff solid;*/
+         /*border-bottom: #ffffff solid;*/
+         /*letter-spacing: -1px;*/
+/*}*/
+
+/*/* Message flashing */*/
+/*.flash {*/
+  /*background-color: #FBB0B0;*/
+  /*padding: 10px;*/
+  /*width: 400px;*/
+/*}*/
+/*/* footer */*/
+/*footer {*/
+  /*background-color: #2B2B2B;*/
+  /*height: 35px;*/
+  /*width: 100%;*/
+  /*opacity: .9;*/
+  /*margin-top: 50%;*/
+/*}*/
+/*footer p {*/
+    /*color: #ffffff;font-size: 1.2em;padding: 5,5,5,5;text-align: center;*/
+/*}*/

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="jumbo">
+    <h2>D3_App<h2>
+    <h3> Home page<h3>
+    
+            
+        
+        <div>
+          <svg width="960" height="860">
+          </svg>
+        </div>
+
+        <script type="text/javascript" >
+
+
+
+ function myfunc(data) 
+ {
+   console.log (data);
+   console.log("in my func");
+ }
+
+
+ $(document).ready(function(){
+            $.ajax({
+                url: "/data/distjson?district_id=CA-11",
+                dataType: 'json',
+                success: myfunc
+            });
+
+  console.log("test_page");
+
+});
+
+ </script>
+
+
+  </div>
+{% endblock %}

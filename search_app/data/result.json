@@ -1,0 +1,16 @@
+[{"cycle": {
+    "contributor": {
+        "contributor_name": "CORRECTIONS CORP OF AMERICA", "contributor_type": {
+            "Corporation": {
+                "organization_name": "CORRECTIONS CORP OF AMERICA", "organization_ext_id": "695", "parent_organization_ext_id": "", "transaction": {
+                    "is_amendment": false, "amount": "50000.00", "transaction_type_description": "", "transaction_namespace": "urn:nimsp:transaction", "date": "2012-03-05", "filing_id": "", "Recipient": {
+                        "recipient_ext_id": "11807", "recipient_party": "I", "district": {
+                            "district": "", "seat_result": "", "district_held": "", "seat": "", "seat_held": "", "seat_status": ""
+                        },
+                        "recipient_type": "C", "recipient_state": "CA", "recipient_category": "", "recipient_state_held": "", "recipient_name": "CALIFORNIANS TO PROTECT SCHOOLS UNIVERSITIES & PUBLIC SAFETY"
+                    },
+                    "transaction_id": "c77df6c7d61539ca067d4120cefc1e14", "transaction_type": ""
+                }, "parent_organization_name": ""
+            }}, "contributor_ext_id": "695"
+    }}
+}]
