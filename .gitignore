@@ -1,3 +1,6 @@
 *pyc
 *.pyc
-
+lib
+include
+bin
+db.log

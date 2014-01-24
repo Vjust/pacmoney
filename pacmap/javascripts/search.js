@@ -1,3 +1,4 @@
+// on search submit
 function search_submit() {
     var donor= $("#id_donor").val();
     if (donor.length > 0) {
@@ -21,19 +22,23 @@ function search_submit() {
     }
     return false;
 }
+
+// document ready
 $(document).ready(function () {
     $("#search-form").submit(search_submit);
     //$("#search-results").load("/search?ajax&donor=" + encodeURIComponent(donor));
     //alert("Press a key to submit");
     //$("#id_donor").value="obama";
     //$("#search-form").submit();
-    $("#search-results").load("/search?ajax&donor=obama");   
+    //$("#search-results").load("/search?ajax&donor=obama");   
     
+    /*
     var myURL = "/data/fullmap?ajax&donor=obama"; 
         $.getJSON(myURL, function(d) {
                         fullMapHighlight(d);
             }
        );    
+       */
 });
     
     

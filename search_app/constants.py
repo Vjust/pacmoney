@@ -12,6 +12,9 @@ MY_CATEGORIES = (
     ('3', 'Contributor Industry'),
     )
 
+DIST_LABEL='district'
+STATE_LABEL='state'
+
 def get_choice(key_value):
     for i in MY_CHOICES:
         if i[0] == key_value:

@@ -1,18 +1,23 @@
-from django.http import HttpResponse, Http404
+""" Views for the search_app application
+"""
+from django.http import HttpResponse
+from django.http import Http404
 from django.template import RequestContext
+
 #the below import is needed to load AJAX:
 from django.template.loader import get_template
 from django.core.context_processors import csrf
 from django.shortcuts import render_to_response
 from django.shortcuts import get_object_or_404
-from django.core.paginator import Paginator, InvalidPage
+from django.core.paginator import Paginator
+from django.core.paginator import InvalidPage
 import json
 
-#from influenceexplorer import *
 from forms import *
 from models import *
+from helpers import *
 
-# from search_app.constants import get_choice
+
 
 def main_page(request):
     """
@@ -51,9 +56,9 @@ def search_page(request):
            
             if my_donor:	
                 form=SearchForm({'my_donor':my_donor})
-                my_search = Contribution.objects.filter(name__icontains=my_donor)
+                result_list = process_donor(my_donor)
   
-            if not my_search:
+            if not result_list:
                 show_result = True
                 null_result = True
                 variables = RequestContext(request, {'my_donor': my_donor, 'show_result':show_result, 'null_result': null_result})
@@ -62,21 +67,6 @@ def search_page(request):
                 # search results were found
                 if ajax:
                     show_result = True
-                    result_list= []
-                    for each_search in my_search:
-                        result_dict={}
-                        result_dict['cmte_name'] = each_search.cmte_nm
-                        result_dict['transaction_amt'] = each_search.transaction_amt
-                        result_dict['cand_st']= each_search.cand_st
-                        result_dict['cand_name']=each_search.cand_name
-                        result_dict['cand_pty_affiliation']=each_search.cand_pty_affiliation
-                        result_dict['name'] = each_search.name
-                        #result_dict['org_type'] = each_search.org_type
-                        result_dict['district_number'] = each_search.cand_office_district
-                        result_dict['district_id'] = each_search.cand_st + '-' + each_search.cand_office_district
-
-                        result_list.append(result_dict)
-
                     #sending this as parameter to the function
                     json_populate(request, result_list)
 
@@ -101,7 +91,7 @@ def search_page(request):
 
                     variables = RequestContext(request, {'form': form,
                                                          'my_donor': my_donor,
-                                                         'my_search': my_search,
+                                                         #'my_search': my_search,
                                                          'result_list': result_list,
                                                          'show_result': show_result,
                                                          'show_paginator': paginator.num_pages > 1,
@@ -131,40 +121,60 @@ def search_page(request):
         variables = RequestContext(request, {'form': form})
         return render_to_response('search.html', variables)
     
+    
+def process_donor2(my_donor):
+    search_committee = Committee.objects.filter(pac_short__icontains = my_donor)
+    contributions = search_committee.contribution_set
+    
+       
+def process_donor(my_donor):
+    """ Returns a Json object after applying donor criteria
+    """
+ 
+    where_str = "upper(pac_short) like upper('%%{0}%%') ".format(my_donor)    
+    search_contribution = Contribution.objects.select_related('pac_donor').extra (where = [where_str])
+    json_list= []
+    for pac_contribution in search_contribution:
+        mydict={}
+        state_id,district_id=split_district_state(pac_contribution.candidate.dist_id_runfor)
+        mydict.setdefault('district_id', state_id + '-' + district_id)
+        mydict.setdefault('cand_st', state_id )
+        mydict.setdefault('district_number',  district_id)
+        mydict.setdefault('transaction_amt', pac_contribution.contribution_amt)
+        mydict.setdefault('cand_name', pac_contribution.candidate.cand_name)
+        mydict.setdefault('cand_party', pac_contribution.candidate.party)
+        mydict.setdefault('cand_pty_affiliation', pac_contribution.candidate.party)        
+        mydict.setdefault('cmte_name', pac_contribution.pac_donor.pac_short)
+        json_list.append(mydict)
+        
+    return json_list
+    
+    
 def fullmap_view(request):
     my_donor=request.GET['donor'].strip()
-
-# maybe : build a logic for donor = ALL           
-        
-    my_search = Contribution.objects.distinct('cand_office_district', 'cand_st').filter(name__icontains=my_donor).order_by('cand_st', 'cand_office_district')
-    # search results were found
-    json_list= []
-    for i in my_search:
-        mydict={}
-        mydict['district_id'] = i.cand_st + '-' + i.cand_office_district
-        mydict['transaction_amt'] = i.transaction_amt
-        json_list.append(mydict)
-       
+    json_list= process_donor(my_donor)
     return HttpResponse(json.dumps(json_list), mimetype='application/json')
-    #variables = RequestContext(request, {'json_list': json_list,})
-        #return render_to_response('search.html', 'district_map.html', variables)
 
 
 
 def district_data_json(request):
+    """ Returns data for a district, when clicked on the Map
+    """
 
-    district_id = request.GET['district_id']
-    cand_state_id, district_num = district_id.split('-')
-    my_search = MV_Contribution.objects.filter(cand_office_district = district_num, cand_st = cand_state_id)            
+    cand_state_id, district_id = split_district_state(request.GET['district_id'])
+    where_str = "dist_id_runfor = '{0}' ".format(cand_state_id+district_id )    
+    search_contribution = Contribution.objects.select_related('candidate').extra (where = [where_str])
     json_data=[]
     
-    for i in my_search:
+    for pac_contribution in search_contribution:
         mydict={}
-        mydict['cmte_nm'] = i.cmte_nm
-        mydict['cand_name'] = i.cand_name
-        mydict['cand_st'] = i.cand_st
-        mydict['cand_pty_affiliation'] = i.cand_pty_affiliation
-        mydict['transaction_amt'] = i.transaction_amt
+        mydict.setdefault('cand_st', cand_state_id )
+        mydict.setdefault('district_number',  district_id)
+        mydict.setdefault('transaction_amt', pac_contribution.contribution_amt)
+        mydict.setdefault('cand_name', pac_contribution.candidate.cand_name)
+        mydict.setdefault('cand_party', pac_contribution.candidate.party)
+        mydict.setdefault('cand_pty_affiliation', pac_contribution.candidate.party)        
+        mydict.setdefault('cmte_name', pac_contribution.pac_donor.pac_short)        
         json_data.append(mydict)
 
     return HttpResponse(json.dumps(json_data), mimetype='application/json')    
@@ -177,6 +187,7 @@ def map_view(request):
 def json_populate(request, result_list):
     return result_list
 
+#
 def contribution_view(request):
     json_data= """[{"contributor": {
         "district": "08",

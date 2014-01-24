@@ -2,14 +2,34 @@
 	margin-top: 50px;
 }
 
-#nav {
-	margin: 13px 0 0 0 ;
+#titlenav {
+    	margin-top:12px;
 }
 
-#nav ul li {
+#nav {
+	margin: 13px 0 0 0 ;
+	padding-right:0px;
+}
+
+#nav ul {
+    	margin-bottom:10px;
+	margin-top:8px;
+	float:right;
+}
+
+#nav li {
 	display: inline;
+	font-size:20px;
 	margin:0 20px 0 0;
-	margin-bottom: 130px;
+	margin-bottom: 13px;
+}
+
+#welcome {
+    padding-top: 40px;
+}
+
+#welcome h4 {
+    text-color:blue;
 }
 
 #nav a {

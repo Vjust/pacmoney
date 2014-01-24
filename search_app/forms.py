@@ -7,7 +7,6 @@ from constants import MY_CHOICES
 from constants import MY_CATEGORIES
 
 class SearchForm(forms.Form):
-    #example of Db lookup for a dropdown
     #category = forms.ModelChoiceField(Category.objects.all())
     donor = forms.CharField(label=u'Enter name of Contributor Org',
                            widget=forms.TextInput(attrs={'size': 10}),
