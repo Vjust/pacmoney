@@ -16,7 +16,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', 
         'NAME': 'pacmap',                      
         'USER': 'wwwdata',
-        'PASSWORD': 'pacmap',
+        'PASSWORD': '',
         'HOST': '',                      
         'PORT': '',                      
     }
